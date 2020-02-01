@@ -1,0 +1,29 @@
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 70vh;
+
+    a {
+        $color: #f48625;
+        display: block;
+        margin: 20px;
+        background-color: $color;
+        padding: 20px 0;
+        text-decoration: none;
+        color: #ffffff;
+        text-align: center;
+
+        &:active,
+        &:hover {
+            background-color: darken( $color, 10% );
+        }
+
+        &.minsk {
+            background-color: #6d3866;
+        }
+        &.sloboda {
+            background-color: #629b38;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+<nav class="main-nav">
+    <a 
+        *ngFor="let _item of nav" 
+        [routerLink]="_item.route" 
+        routerLinkActive="active"  
+        [routerLinkActiveOptions]="{exact:true}"
+    >
+        <span>{{_item.title}}</span>
+    </a>
+</nav>  
+
+<h3 [ngClass]="routeShortcut" [innerHTML]="direction"></h3>
+
+<div class="double-title" [ngClass]="routeShortcut" [innerHTML]="direction"></div>
+
+<router-outlet></router-outlet>

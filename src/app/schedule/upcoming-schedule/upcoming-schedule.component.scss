@@ -1,0 +1,31 @@
+.update-schedule-popup {
+    background-color: rgba( #000, .5 );
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+
+    div {
+        background: #f48625;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 30px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+
+        span {
+
+        }
+    } 
+}

@@ -1,0 +1,18 @@
+<button 
+    *ngIf="isNeedToUpdate()" 
+    class="update-schedule-popup" 
+    type="button" 
+    (click)="resetNeedToUpdate()"
+>
+    <div>
+        <span>Обновить расписание</span>
+    </div>
+</button>
+
+<app-table 
+    *ngIf="!scheduleService.isError" 
+    [daySchedule]="daySchedule" 
+    type="currentTime"
+></app-table>
+
+<div *ngIf="scheduleService.isError">Проблемы с загрузкой расписания :-(</div>

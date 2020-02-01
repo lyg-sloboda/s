@@ -1,0 +1,3 @@
+<div class="app-weekdays">
+    <button class="weekday" *ngFor="let _day of days; index as i" [disabled]="day === i"(click)="onClickDay(i)">{{_day}}</button>
+</div>

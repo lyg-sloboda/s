@@ -1,0 +1,51 @@
+<ul class="app-table" [ngClass]="type">
+    <li class="hour-item head-item">
+        <div class="hour cell">Час</div>
+        <ul class="sub-list">
+            <li class="route-item">
+                <div class="cell time departure-time">
+                    <span>Время отпр.</span>
+                </div>
+                <div class="cell route-number">
+                    <div>Номер</div>
+                </div>
+                <div class="cell route-name">
+                    <div>Маршрут</div>
+                </div>
+                <div class="cell time arrival-time">
+                    <span>Время приб.</span>
+                </div>
+            </li>
+        </ul>
+    </li>
+    <ng-container *ngFor="let _period of daySchedule">
+        <li class="day-item" *ngIf="_period.dayLabel">{{_period.dayLabel}}</li>
+        <li class="hour-item" *ngFor="let _item of _period.dayRoutes" >
+            <div class="hour cell">
+                <span>{{_item.hour}}</span>
+            </div>
+            <ng-container *ngIf="_item.routes.length">
+                <ul class="sub-list">
+                    <li class="route-item" *ngFor="let _route of _item.routes" [ngClass]="{'in-active': 'currentTime' === type && !_route.isActiveNow()}">
+                        <div class="cell time departure-time">
+                            <div>{{_route.departureTime}}</div>
+                            <span *ngIf="'currentTime' === type">{{_route.departureDate | timeTo}}</span>
+                        </div>
+                        <!-- <div class="cell route-number">{{_route.number}}</div> -->
+                        <div class="cell route-name">
+                            <a 
+                                class="route-number" 
+                                [ngClass]="'route-type-' + _route.type"
+                                [href]="_route.url" 
+                                target="_blank"
+                            >
+                                <span>{{_route.number}}</span>
+                            </a>{{_route.label}}
+                        </div>
+                        <div class="cell time arrival-time">{{_route.arrivalTime}}</div>
+                    </li>
+                </ul>
+            </ng-container>
+        </li>
+    </ng-container>
+</ul>
