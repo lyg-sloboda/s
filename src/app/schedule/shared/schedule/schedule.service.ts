@@ -4,7 +4,7 @@ import { ScheduleRoute, IRoute, IDefaultRoute } from './schedule-route';
 import { forkJoin } from 'rxjs';
 import { RouteRulesService } from '../../../shared/services/route-rules/route-rules.service';
 import { ActivatedRoute } from '@angular/router';
-import { getDirectionId } from '../../../../../../shared/utils';
+import { getDirectionId } from 'src/app/shared/utils';
 
 export interface ISchedule {
   direction?: any;
@@ -30,10 +30,10 @@ interface ISheduleDay {
   providedIn: 'root'
 })
 export class ScheduleService {
-  // show today's {n} hours of next day at the end today, 
+  // show today's {n} hours of next day at the end today,
   // this is about 24 hour = 00 hours from next day
   // also it allows to display 01 hour of next day as today schedule
-  addHoursFromNextDay = 6; 
+  addHoursFromNextDay = 6;
 
   schedule: Array<IDefaultRoute> | [];
 
@@ -52,7 +52,7 @@ export class ScheduleService {
   departureSpot: string;
 
   constructor(
-    private date: DateService, 
+    private date: DateService,
     private routeRules: RouteRulesService
   ) {}
 
@@ -62,7 +62,7 @@ export class ScheduleService {
 
   getRouteRules(directionId, departureSpot) {
     const directionRules = this.getDirectionRouteRules(departureSpot);
-    
+
     return (directionRules.rules.filter((routeRules) => {
       const id = getDirectionId(routeRules.from, routeRules.to);
       return directionId === id;
@@ -147,14 +147,14 @@ export class ScheduleService {
   //         };
   //       }
 
-  //       // create new route object 
+  //       // create new route object
   //       // because the same routes can have different day number
   //       scheduleByDay[day].dayRoutes.push(route);
   //     });
   //   });
 
   //   return scheduleByDay;
-  // } 
+  // }
 
   // @need to test
   _sortAndGroupScheduleByTime(scheduleByDay: Array<ISheduleDay>): Array<ISheduleDay> {
@@ -210,7 +210,7 @@ export class ScheduleService {
       }
       // a должно быть равным b
       return 0;
-    }); 
+    });
   }
 
   // @need test
@@ -305,7 +305,7 @@ export class ScheduleService {
       for (let day = startDay; day <= endDay; day++) {
         output.push(this.scheduleByDay[day]);
       }
-  
+
       return output;
     }
 
