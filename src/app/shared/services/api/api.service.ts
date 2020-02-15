@@ -15,7 +15,9 @@ interface IScheduleRequestAtts {
   providedIn: 'root'
 })
 export class ApiService {
-  uri = isDevMode() ? 'http://localhost:3000' : window.location.origin;
+  // uri = isDevMode() ? 'http://localhost:3000' : window.location.origin;
+  uri = isDevMode() ? 'https://lyg-sloboda-dev.herokuapp.com' : window.location.origin;
+  // uri = isDevMode() ? 'http://localhost/030_schedule_3' : window.location.origin;
 
   constructor(private http: HttpClient, private cache: CacheService) { }
 

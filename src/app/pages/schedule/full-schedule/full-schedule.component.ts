@@ -1,16 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ISchedule, ScheduleService } from '../shared/schedule/schedule.service';
 import { ActivatedRoute } from '@angular/router';
-import { DateService } from '../shared/date/date.service';
+import { ScheduleService, ISchedule } from '../../../shared/services/schedule/schedule.service';
+import { pluck } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-upcoming-schedule',
-  templateUrl: './upcoming-schedule.component.html',
-  styleUrls: ['./upcoming-schedule.component.scss']
+  selector: 'app-full-schedule',
+  templateUrl: './full-schedule.component.html',
+  styleUrls: ['./full-schedule.component.scss']
 })
-export class UpcomingScheduleComponent implements OnInit, OnDestroy {
+export class FullScheduleComponent implements OnInit, OnDestroy {
   private schedule: ISchedule;
-  private schedules: ISchedule[];
 
   day: number;
 
@@ -19,8 +18,7 @@ export class UpcomingScheduleComponent implements OnInit, OnDestroy {
   routeSubscr;
 
   constructor(
-    public scheduleService: ScheduleService,
-    public date: DateService,
+    private scheduleService: ScheduleService,
     private route: ActivatedRoute
   ) {
     // see alt version whithout subscribe on ngOnInit()
@@ -40,24 +38,12 @@ export class UpcomingScheduleComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // see alt version with subscribe in constructor()
     // this.schedule = this.route.parent.snapshot.data['schedule'];
-    // this.schedules = this.route.parent.snapshot.data['schedules'];
     // this.scheduleService.setSchedule(this.schedule);
-
-    this._setDaySchedule();
   }
 
-
-
-  _setDaySchedule() {
-    this.daySchedule = this.scheduleService.getDayScheduleFromNowByHours();
+  onChangeDay(event: {day: number}) {
+    this.day = event.day;
+    this.daySchedule = this.scheduleService.getDayFullSchedule(this.day);
   }
 
-  resetNeedToUpdate() {
-    this._setDaySchedule();
-    this.scheduleService.resetNeedToUpdateSchedule();
-  }
-
-  isNeedToUpdate() {
-    return this.scheduleService.needToUpdate;
-  }
 }

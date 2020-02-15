@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { ScheduleComponent } from './schedule/schedule.component';
-import { ScheduleResolver, SchedulesResolver } from './guards/schedule.resolver';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { UpcomingScheduleComponent } from './schedule/upcoming-schedule/upcoming-schedule.component';
-import { FullScheduleComponent } from './schedule/full-schedule/full-schedule.component';
-import { ResetComponent } from './reset/reset.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ResetComponent } from './pages/reset/reset.component';
+import { ScheduleComponent } from './pages/schedule/schedule.component';
+import { SchedulesResolver, ScheduleResolver } from './shared/guards/schedule.resolver';
+import { UpcomingScheduleComponent } from './pages/schedule/upcoming-schedule/upcoming-schedule.component';
+import { FullScheduleComponent } from './pages/schedule/full-schedule/full-schedule.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

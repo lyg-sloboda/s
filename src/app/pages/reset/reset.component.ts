@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CacheService } from '../shared/services/cache/cache.service';
+import { CacheService } from 'src/app/shared/services/cache/cache.service';
 
 @Component({
   selector: 'app-reset',

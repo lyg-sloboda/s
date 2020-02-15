@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
+import { IDefaultRoute } from './schedule-route';
 import { ScheduleService } from './schedule.service';
 import { DateService } from '../date/date.service';
-import { IDefaultRoute } from './schedule-route';
 
 describe('ScheduleService', () => {
 	let service: ScheduleService;

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { DateService } from '../date/date.service';
 import { ScheduleRoute, IRoute, IDefaultRoute } from './schedule-route';
-import { forkJoin } from 'rxjs';
-import { RouteRulesService } from '../../../shared/services/route-rules/route-rules.service';
-import { ActivatedRoute } from '@angular/router';
+import { forkJoin, Observable } from 'rxjs';
+import { ActivatedRoute, Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { RouteRulesService } from 'src/app/shared/services/route-rules/route-rules.service';
 import { getDirectionId } from 'src/app/shared/utils';
 
 export interface ISchedule {
@@ -81,6 +81,10 @@ export class ScheduleService {
   // }
 
   public setSchedules(schedules) {
+    if (!schedules) {
+      return;
+    }
+    schedules = schedules.filter((item) => !!item);
     if (schedules.length) {
       this.scheduleByDay = this._getMergedSchedules(schedules);
       this.scheduleByDay = this._sortAndGroupScheduleByTime(this.scheduleByDay);

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { ScheduleService } from '../../shared/schedule/schedule.service';
-import { DateService } from '../../shared/date/date.service';
+import { ScheduleService } from '../../../../shared/services/schedule/schedule.service';
+import { DateService } from '../../../../shared/services/date/date.service';
 
 @Component({
   selector: 'app-weekdays',
@@ -25,7 +25,7 @@ export class WeekdaysComponent implements OnInit {
 
   constructor(private scheduleService: ScheduleService, private date: DateService) {
     this.today = this.date.getToday();
-  }  
+  }
 
   ngOnInit() {
     this._setDay(this.today);

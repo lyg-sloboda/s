@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { ScheduleService } from '../shared/schedule/schedule.service';
+import { ScheduleService } from '../../../shared/services/schedule/schedule.service';
 
 @Component({
   selector: 'app-table',
@@ -16,7 +16,7 @@ export class TableComponent implements OnChanges {
   // hours$;
 
   constructor(private scheduleService: ScheduleService) {
-    
+
   }
 
   // ngOnChanges(change) {

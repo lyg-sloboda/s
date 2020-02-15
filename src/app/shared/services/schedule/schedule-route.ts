@@ -1,5 +1,5 @@
 import { DateService } from '../date/date.service';
-import { RouteRules } from '../../../shared/services/route-rules/route-rules.service';
+import { RouteRules } from '../route-rules/route-rules.service';
 
 export interface IDefaultRoute {
     label: string;
@@ -63,8 +63,8 @@ export class ScheduleRoute implements IRoute {
     type: string;
 
     constructor(
-        route: IDefaultRoute, 
-        weekDay: number, 
+        route: IDefaultRoute,
+        weekDay: number,
         private date: DateService,
         private rules: RouteRules
     ) {

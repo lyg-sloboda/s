@@ -1,8 +1,8 @@
 import { Pipe, PipeTransform, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { interval, timer } from 'rxjs';
-import { ScheduleService } from 'src/app/schedule/shared/schedule/schedule.service';
 import { take } from 'rxjs/operators';
-import { DateService } from 'src/app/schedule/shared/date/date.service';
+import { DateService } from '../services/date/date.service';
+import { ScheduleService } from '../services/schedule/schedule.service';
 
 const MIN_IN_MS = 1000 * 60;
 
@@ -66,7 +66,7 @@ export class TimeToPipe implements PipeTransform, OnDestroy {
     if (0 > delta) {
       delta = compareTime - futureTime;
       isNegative = true;
-    } 
+    }
     const dateDelta = new Date(delta);
     const hours = dateDelta.getUTCHours();
 

@@ -4,19 +4,20 @@ import { HttpClientModule, HttpClientJsonpModule, HTTP_INTERCEPTORS } from '@ang
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WeekdaysComponent } from './schedule/full-schedule/weekdays/weekdays.component';
-import { TableComponent } from './schedule/table/table.component';
 import { ApiService } from './shared/services/api/api.service';
-import { HomeComponent } from './home/home.component';
-import { ScheduleComponent } from './schedule/schedule.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { UpcomingScheduleComponent } from './schedule/upcoming-schedule/upcoming-schedule.component';
-import { FullScheduleComponent } from './schedule/full-schedule/full-schedule.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { TimeToPipe } from './shared/pipes/time-to.pipe';
-import { ResetComponent } from './reset/reset.component';
-import { RouteListComponent } from './route-list/route-list.component';
-import { SchNotifierComponent } from './sch-notifier/sch-notifier.component';
-import { ApiInterceptor } from './shared/services/interceptor/api.interceptor';
+import { RouteListComponent } from './pages/route-list/route-list.component';
+import { WeekdaysComponent } from './pages/schedule/full-schedule/weekdays/weekdays.component';
+import { TableComponent } from './pages/schedule/table/table.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ScheduleComponent } from './pages/schedule/schedule.component';
+import { UpcomingScheduleComponent } from './pages/schedule/upcoming-schedule/upcoming-schedule.component';
+import { FullScheduleComponent } from './pages/schedule/full-schedule/full-schedule.component';
+import { ResetComponent } from './pages/reset/reset.component';
+import { SchNotifierComponent } from './common/sch-notifier/sch-notifier.component';
+import { CacheInterceptor } from './shared/services/interceptor/cache.interceptor';
+import { SpinnerComponent } from './common/spinner/spinner.component';
 
 
 
@@ -33,19 +34,20 @@ import { ApiInterceptor } from './shared/services/interceptor/api.interceptor';
     TimeToPipe,
     ResetComponent,
     RouteListComponent,
-    SchNotifierComponent
+    SchNotifierComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientJsonpModule
+    HttpClientJsonpModule,
   ],
   providers: [
     ApiService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: ApiInterceptor,
+      useClass: CacheInterceptor,
       multi: true
     }
   ],

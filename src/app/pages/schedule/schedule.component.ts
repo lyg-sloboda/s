@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ISchedule, ScheduleService } from './shared/schedule/schedule.service';
+import { ISchedule, ScheduleService } from '../../shared/services/schedule/schedule.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -25,7 +25,7 @@ export class ScheduleComponent implements OnInit {
 	}
 
   ngOnInit() {
-	this.schedule = this.route.snapshot.data['schedule'];
+  	this.schedule = this.route.snapshot.data['schedule'];
     this.schedules = this.route.snapshot.data['schedules'];
     this.departureSpot = this.route.snapshot.params['departureSpot'];
     this.scheduleService.setDepartureSpot(this.departureSpot);

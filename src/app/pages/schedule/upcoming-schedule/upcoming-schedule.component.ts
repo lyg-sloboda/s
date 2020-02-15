@@ -1,15 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ISchedule, ScheduleService } from '../../../shared/services/schedule/schedule.service';
 import { ActivatedRoute } from '@angular/router';
-import { ScheduleService, ISchedule } from '../shared/schedule/schedule.service';
-import { pluck } from 'rxjs/operators';
+import { DateService } from '../../../shared/services/date/date.service';
 
 @Component({
-  selector: 'app-full-schedule',
-  templateUrl: './full-schedule.component.html',
-  styleUrls: ['./full-schedule.component.scss']
+  selector: 'app-upcoming-schedule',
+  templateUrl: './upcoming-schedule.component.html',
+  styleUrls: ['./upcoming-schedule.component.scss']
 })
-export class FullScheduleComponent implements OnInit, OnDestroy {
+export class UpcomingScheduleComponent implements OnInit, OnDestroy {
   private schedule: ISchedule;
+  private schedules: ISchedule[];
 
   day: number;
 
@@ -18,9 +19,10 @@ export class FullScheduleComponent implements OnInit, OnDestroy {
   routeSubscr;
 
   constructor(
-    private scheduleService: ScheduleService,
+    public scheduleService: ScheduleService,
+    public date: DateService,
     private route: ActivatedRoute
-  ) { 
+  ) {
     // see alt version whithout subscribe on ngOnInit()
     // this.routeSubscr = this.route.data
     //   .pipe(pluck('schedule'))
@@ -38,12 +40,24 @@ export class FullScheduleComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // see alt version with subscribe in constructor()
     // this.schedule = this.route.parent.snapshot.data['schedule'];
+    // this.schedules = this.route.parent.snapshot.data['schedules'];
     // this.scheduleService.setSchedule(this.schedule);
+
+    this._setDaySchedule();
   }
 
-  onChangeDay(event: {day: number}) {
-    this.day = event.day;
-    this.daySchedule = this.scheduleService.getDayFullSchedule(this.day);
+
+
+  _setDaySchedule() {
+    this.daySchedule = this.scheduleService.getDayScheduleFromNowByHours();
   }
 
+  resetNeedToUpdate() {
+    this._setDaySchedule();
+    this.scheduleService.resetNeedToUpdateSchedule();
+  }
+
+  isNeedToUpdate() {
+    return this.scheduleService.needToUpdate;
+  }
 }
