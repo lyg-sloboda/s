@@ -6,7 +6,7 @@ import { tap, map } from 'rxjs/operators';
 @Injectable()
 export class CacheInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const cacher = isDevMode() ? 'http://localhost/030_schedule_3/cache' : 'http://modulzabor.by/lyg-sloboda';
+    const cacher = isDevMode() ? 'http://localhost/030_schedule_3/cache' : 'http://modulzabor.by/lyg-sloboda/cache';
     const encodedUrl = encodeURIComponent( req.urlWithParams );
 
     return next.handle(req.clone({
