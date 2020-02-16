@@ -16,8 +16,9 @@ interface IScheduleRequestAtts {
 })
 export class ApiService {
   // uri = isDevMode() ? 'http://localhost:3000' : window.location.origin;
-  uri = isDevMode() ? 'https://lyg-sloboda-dev.herokuapp.com' : window.location.origin;
+  // uri = isDevMode() ? 'https://lyg-sloboda-dev.herokuapp.com' : window.location.origin;
   // uri = isDevMode() ? 'http://localhost/030_schedule_3' : window.location.origin;
+  uri = 'https://lyg-sloboda-dev.herokuapp.com';
 
   constructor(private http: HttpClient, private cache: CacheService) { }
 
@@ -61,12 +62,19 @@ export class ApiService {
     } else {
       params = {};
     }
-    const cacheKey = apiUri + params;
+    const paramsStr = params instanceof HttpParams ? '?' + params : '';
+    const cacheKey = apiUri + paramsStr;
     if (this.cache.schedueInCache(cacheKey)) {
       return of(this.cache.get(cacheKey));
     }
 
-    return this.http.get(`${this.uri}/api/${apiUri}`, {params})
+    return this.http.get(`${this.uri}/api/${apiUri}`, {
+      params,
+      headers: {
+        Accept: 'application/json'
+      }
+    })
+    // return this.http.jsonp(`${this.uri}/api/${apiUri}${paramsStr}`, 'callback')
       .pipe(
         map((data: any) => {
           if (data.error) {

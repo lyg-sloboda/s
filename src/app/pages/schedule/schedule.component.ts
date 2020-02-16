@@ -16,7 +16,11 @@ export class ScheduleComponent implements OnInit {
   routeShortcut: string;
 
   get direction() {
-    let direction = this.schedules[0].direction;
+    const schedule = this.schedules[0];
+    if (!schedule) {
+      return;
+    }
+    const direction = schedule.direction;
     return `${direction.from} &rarr; ${direction.to}`;
   }
 
@@ -27,6 +31,7 @@ export class ScheduleComponent implements OnInit {
   ngOnInit() {
   	this.schedule = this.route.snapshot.data['schedule'];
     this.schedules = this.route.snapshot.data['schedules'];
+    this.schedules = this.schedules ? this.schedules.filter((item) => !!item) : [];
     this.departureSpot = this.route.snapshot.params['departureSpot'];
     this.scheduleService.setDepartureSpot(this.departureSpot);
     this.scheduleService.setSchedules(this.schedules);

@@ -81,10 +81,6 @@ export class ScheduleService {
   // }
 
   public setSchedules(schedules) {
-    if (!schedules) {
-      return;
-    }
-    schedules = schedules.filter((item) => !!item);
     if (schedules.length) {
       this.scheduleByDay = this._getMergedSchedules(schedules);
       this.scheduleByDay = this._sortAndGroupScheduleByTime(this.scheduleByDay);
