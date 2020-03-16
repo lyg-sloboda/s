@@ -7,15 +7,21 @@ $background: #f48625;
   justify-content: center;
 }
 
-.loader,
-.loader:before,
-.loader:after {
-  background: $background;
-  -webkit-animation: load1 1s infinite ease-in-out;
-  animation: load1 1s infinite ease-in-out;
-  width: 1em;
-  height: 4em;
+.loader-block {
+  position: relative;
+  height: 240px;
+  width: 100%;
+
+  .text {
+    position: absolute;
+    bottom: 45px;
+    text-align: center;
+    width: 100%;
+    color: darkgrey;
+    font-size: 12px;
+  }
 }
+
 .loader {
   color: $background;
   text-indent: -9999em;
@@ -25,23 +31,38 @@ $background: #f48625;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
+
+  &,
+  &:before,
+  &:after {
+    background: $background;
+    animation: load1 1s infinite ease-in-out;
+    -webkit-animation: load1 1s infinite ease-in-out;
+    width: 1em;
+    height: 220px;
+  }
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    content: '';
+  }
+
+  &:before {
+    left: -1.5em;
+    animation-delay: -0.32s;
+    -webkit-animation-delay: -0.32s;
+  }
+  &:after {
+    left: 1.5em;
+  }
+}
+.loader {
   -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
 }
-.loader:before,
-.loader:after {
-  position: absolute;
-  top: 0;
-  content: '';
-}
-.loader:before {
-  left: -1.5em;
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
-}
-.loader:after {
-  left: 1.5em;
-}
+
 @-webkit-keyframes load1 {
   0%,
   80%,

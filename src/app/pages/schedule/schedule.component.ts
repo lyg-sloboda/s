@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ISchedule, ScheduleService } from '../../shared/services/schedule/schedule.service';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { NotifierService } from 'src/app/shared/services/notifier/notifier.service';
 
 @Component({
   selector: 'app-schedule',
@@ -15,6 +17,8 @@ export class ScheduleComponent implements OnInit {
   nav: Array<any>;
   routeShortcut: string;
 
+  alert$: Observable<boolean>;
+
   get direction() {
     const schedule = this.schedules[0];
     if (!schedule) {
@@ -24,12 +28,17 @@ export class ScheduleComponent implements OnInit {
     return `${direction.from} &rarr; ${direction.to}`;
   }
 
-  constructor(private route: ActivatedRoute, router: ActivatedRoute, private scheduleService: ScheduleService) {
+  constructor(
+    private route: ActivatedRoute,
+    router: ActivatedRoute,
+    private scheduleService: ScheduleService,
+    private notifierService: NotifierService
+  ) {
     this.routeShortcut = router.snapshot.params.departureSpot;
+    this.alert$ = this.notifierService.alert$;
 	}
 
   ngOnInit() {
-  	this.schedule = this.route.snapshot.data['schedule'];
     this.schedules = this.route.snapshot.data['schedules'];
     this.schedules = this.schedules ? this.schedules.filter((item) => !!item) : [];
     this.departureSpot = this.route.snapshot.params['departureSpot'];
@@ -39,16 +48,23 @@ export class ScheduleComponent implements OnInit {
     this.nav = [
       {
         route: [''],
-        title: 'Главная'
+        title: 'Главная',
+        gaEvent: null
       },
       {
         route: ['/', this.departureSpot],
-        title: 'Сейчас'
+        title: 'Сейчас',
+        gaEvent: 'nowSchedule'
       },
       {
         route: ['/', this.departureSpot, 'full'],
-        title: 'Всё расписание'
+        title: 'Всё расписание',
+        gaEvent: 'allSchedule'
       }
     ];
+  }
+
+  openAlert() {
+    this.notifierService.openScheduleIntro();
   }
 }

@@ -4,12 +4,23 @@
         [routerLink]="_item.route"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{exact:true}"
+        [gaEvent]="_item.gaEvent"
     >
         <span>{{_item.title}}</span>
     </a>
 </nav>
 
-<h3 [ngClass]="routeShortcut" [innerHTML]="direction"></h3>
+<div [ngClass]="routeShortcut" class="page-header">
+  <h3 [innerHTML]="direction"></h3>
+  <button
+    class="info-icon"
+    [class.alert]="alert$ | async"
+    gaEvent="info"
+    (click)="openAlert()"
+  >
+    i
+  </button>
+</div>
 
 <div class="double-title" [ngClass]="routeShortcut" [innerHTML]="direction"></div>
 

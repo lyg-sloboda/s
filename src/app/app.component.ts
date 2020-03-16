@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { SpinnerService } from './shared/services/spinner/spinner.service';
-import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { RootModalService } from './shared/services/root-modal/root-modal.service';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +9,13 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-  spinnerToggler$: Observable<boolean>;
-  constructor(private spinnerService: SpinnerService, private cd: ChangeDetectorRef) {}
+  showModal$: Observable<string>;
+  constructor(
+    private rootModalService: RootModalService
+  ) {}
 
   ngOnInit() {
-    this.spinnerToggler$ = this.spinnerService.toggler$;
+    this.showModal$ = this.rootModalService.modal$;
   }
 
 }

@@ -15,9 +15,14 @@ import { ScheduleComponent } from './pages/schedule/schedule.component';
 import { UpcomingScheduleComponent } from './pages/schedule/upcoming-schedule/upcoming-schedule.component';
 import { FullScheduleComponent } from './pages/schedule/full-schedule/full-schedule.component';
 import { ResetComponent } from './pages/reset/reset.component';
-import { SchNotifierComponent } from './common/sch-notifier/sch-notifier.component';
 import { CacheInterceptor } from './shared/services/interceptor/cache.interceptor';
 import { SpinnerComponent } from './common/spinner/spinner.component';
+import { InfoComponent } from './pages/info/info.component';
+import { CarouselComponent } from './common/carousel/carousel.component';
+import { AppIntroductionComponent } from './common/app-introduction/app-introduction.component';
+import { RootModalComponent } from './common/root-modal/root-modal.component';
+import { CarouselSlideComponent } from './common/carousel-slide/carousel-slide.component';
+import { GaEventDirective } from './shared/directives/ga-event/ga-event.directive';
 
 
 
@@ -34,8 +39,13 @@ import { SpinnerComponent } from './common/spinner/spinner.component';
     TimeToPipe,
     ResetComponent,
     RouteListComponent,
-    SchNotifierComponent,
-    SpinnerComponent
+    RootModalComponent,
+    SpinnerComponent,
+    InfoComponent,
+    CarouselComponent,
+    AppIntroductionComponent,
+    CarouselSlideComponent,
+    GaEventDirective,
   ],
   imports: [
     BrowserModule,

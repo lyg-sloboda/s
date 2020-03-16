@@ -1,0 +1,45 @@
+.carousel-item  {
+  padding: 0 20px;
+  position: absolute;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+}
+.carousel-pagination {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .slides-count {
+    text-align: center;
+    color: gray;
+  }
+
+  button {
+    width: 90px;
+    text-align: center;
+    line-height: 34px;
+    background-color: #ffffff;
+    position: absolute;
+    border: 1px solid #f48625;
+
+    &[disabled] {
+      background-color: gray !important;
+      border-color: gray;
+    }
+
+    &.prev {
+      left: 20px;
+    }
+    &.next {
+      right: 20px;
+      background-color: #f48625;
+      color: #fff;
+    }
+  }
+}

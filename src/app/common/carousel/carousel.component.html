@@ -1,0 +1,41 @@
+<div *ngIf="timer$ | async as timer" class="carousel">
+  <ng-container *ngFor="let slide of slides; index as i">
+    <div *ngIf="i === current" class="carousel-item">
+      <ng-template *ngTemplateOutlet="slide.template"></ng-template>
+    </div>
+  </ng-container>
+
+  <div class="carousel-pagination">
+    <button
+      *ngIf="0 !== current"
+      class="prev"
+      (click)="prev()"
+    >
+      &lsaquo; Назад
+    </button>
+
+    <div class="slides-count">
+      {{current + 1}}/{{slides.length}}
+    </div>
+
+    <button
+      *ngIf="current !== slides.length - 1"
+      class="next"
+      [disabled]="timer.length"
+      (click)="next()"
+    >
+      <span *ngIf="timer.length">({{timer.length}})</span>
+      Далee &rsaquo;
+    </button>
+
+    <button
+      *ngIf="showCloseBtn && current === slides.length - 1"
+      class="next"
+      [disabled]="timer.length"
+      (click)="close()"
+    >
+      <span *ngIf="timer.length">({{timer.length}})</span>
+      {{ closeBtnTitle }}
+    </button>
+  </div>
+</div>

@@ -1,5 +1,6 @@
-<sch-spinner *ngIf="true === (spinnerToggler$ | async)"></sch-spinner>
+<router-outlet *ngIf="!(showModal$ | async); else modalTmpl"></router-outlet>
 
-<router-outlet></router-outlet>
+<ng-template #modalTmpl>
+  <sch-root-modal></sch-root-modal>
+</ng-template>
 
-<sch-notifier></sch-notifier>

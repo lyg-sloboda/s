@@ -49,8 +49,8 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "baseHref": "/schedule-lyg-sloboda-angular",
-              "deployUrl": "./schedule-lyg-sloboda-angular/",
+              "baseHref": "/s",
+              "deployUrl": "./s/",
               "budgets": [
                 {
                   "type": "initial",
@@ -115,6 +115,8 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
+            "repo": "https://github.com/lyg-sloboda/s.git",
+            "branch": "master"
           }
         }
       }

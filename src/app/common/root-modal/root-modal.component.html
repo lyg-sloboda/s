@@ -1,0 +1,11 @@
+<ng-container [ngSwitch]="modalName$ | async">
+  <sch-spinner *ngSwitchCase="'spinner'"></sch-spinner>
+  <sch-app-introduction
+    *ngSwitchCase="'APP_INTRODUCTION'"
+    type="APP_INTRODUCTION"
+  ></sch-app-introduction>
+  <sch-app-introduction
+    *ngSwitchCase="'SCHEDULE_INTRODUCTION'"
+    type="SCHEDULE_INTRODUCTION"
+  ></sch-app-introduction>
+</ng-container>
