@@ -14,7 +14,7 @@ if (environment.production) {
     accurateTrackBounce: true,
     webvisor: true
   });
-  window['gtag']('config', 'UA-47179291-4');
+  // window['gtag']('config', 'UA-47179291-4');
 }
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));

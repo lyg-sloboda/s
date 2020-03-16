@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-const ga = window['ga'] || ((...args) => { console.log(args)});
+let ga: Function;
 
 export type AppGaEvent = 'minsk' | 'sloboda' | 'info' | 'allSchedule' | 'nowSchedule' | 'carousel';
 
@@ -9,12 +9,22 @@ export type AppGaEvent = 'minsk' | 'sloboda' | 'info' | 'allSchedule' | 'nowSche
 })
 export class AnalyticsService {
 
-  constructor() { }
+  constructor() {
+    // ga = window['ga'] || ((...args) => { console.log(args) });
+  }
 
   trackEvent(name: AppGaEvent) {
-    ga('send', 'event', name);
+    window['gtag']('event', name);
   }
   trackCarousel(type: string, button: 'previous' | 'next' | 'close', slide: number) {
-    ga('send', 'event', 'carousel', type, button, `click-on-${slide}`);
+    window['gtag']('event', 'carousel', {
+      event_category: type,
+      event_label: button,
+      value: `click-on-${slide}`
+    });
+  }
+
+  trackPageNavigation(page: string) {
+    window['gtag']('config', 'UA-47179291-4', { 'page_path': page });
   }
 }

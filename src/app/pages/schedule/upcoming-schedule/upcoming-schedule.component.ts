@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ISchedule, ScheduleService } from '../../../shared/services/schedule/schedule.service';
 import { ActivatedRoute } from '@angular/router';
 import { DateService } from '../../../shared/services/date/date.service';
+import { AnalyticsService } from 'src/app/shared/services/analytics/analytics.service';
 
 @Component({
   selector: 'app-upcoming-schedule',
@@ -21,7 +22,8 @@ export class UpcomingScheduleComponent implements OnInit, OnDestroy {
   constructor(
     public scheduleService: ScheduleService,
     public date: DateService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private analytics: AnalyticsService
   ) {
     // see alt version whithout subscribe on ngOnInit()
     // this.routeSubscr = this.route.data
@@ -44,6 +46,7 @@ export class UpcomingScheduleComponent implements OnInit, OnDestroy {
     // this.scheduleService.setSchedule(this.schedule);
 
     this._setDaySchedule();
+    this.analytics.trackPageNavigation(`/${this.route.snapshot.parent.params.departureSpot}`);
   }
 
 
